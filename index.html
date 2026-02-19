@@ -1590,22 +1590,10 @@
             messages.scrollTop = messages.scrollHeight;
 
             try {
-                const res = await fetch('https://n8n.srv1334356.hstgr.cloud/webhook/client-support', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text, phone: 'web-visitor' })
-                });
+                // Temporary static response while backend is being fixed
+                await new Promise(resolve => setTimeout(resolve, 800));
 
-                if (!res.ok) {
-                    throw new Error(`HTTP ${res.status}`);
-                }
-
-                const data = await res.json();
-                let reply = data?.reply || data?.output || (Array.isArray(data) ? data[0]?.reply : null);
-
-                if (!reply) {
-                    reply = "Hi! I'm Nathan from Rekindle Pro. Ask me anything about our SMS review automation, lead reactivation, or free AI audits!";
-                }
+                const reply = "Hi! I'm Nathan from Rekindle Pro. I help businesses with:\n\n• SMS review automation (£2.50/review)\n• Lead reactivation\n• Free AI audits\n\nWhat would you like to know?";
 
                 typing.remove();
                 const botBubble = document.createElement('div');
