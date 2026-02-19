@@ -141,8 +141,8 @@
                     },
                     keyframes: {
                         divineBloom: {
-                            '0%': { opacity: '0', transform: 'scale(0.98) translateY(10px)', filter: 'blur(10px)' },
-                            '100%': { opacity: '1', transform: 'scale(1) translateY(0)', filter: 'blur(0px)' },
+                            '0%': { opacity: '0', transform: 'scale(0.98) translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
                         },
                         revealUp: {
                             '0%': { opacity: '0', transform: 'translateY(20px)' },
@@ -229,7 +229,6 @@
                 radial-gradient(circle at 50% 50%, rgba(26, 115, 232, 0.03) 0%, transparent 60%),
                 radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.8) 0%, transparent 40%),
                 radial-gradient(circle at 15% 85%, rgba(232, 240, 254, 0.4) 0%, transparent 45%);
-            will-change: transform;
         }
 
         .bioluminescent-border {
@@ -246,13 +245,12 @@
             z-index: -1;
             border-radius: inherit;
             opacity: 0;
-            transition: opacity 0.4s ease;
-            animation: moveGradient 4s linear infinite;
-            will-change: background-position, opacity;
+            transition: opacity 0.4s ease, background-position 0.4s ease;
         }
 
         .bioluminescent-border:hover::before {
             opacity: 1;
+            background-position: 200% 0%;
         }
 
         .cta-pulse::after {
@@ -329,25 +327,22 @@
         }
 
         .kinetic-card {
-            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.5s ease;
-            will-change: transform, box-shadow;
-            transform: translateZ(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .kinetic-card:hover {
-            transform: translateY(-6px) translateZ(0);
+            transform: translateY(-4px);
         }
 
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(30px) translateZ(0);
-            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-            will-change: opacity, transform;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
         .scroll-reveal.active {
             opacity: 1;
-            transform: translateY(0) translateZ(0);
+            transform: translateY(0);
         }
 
         @supports (not (backdrop-filter: blur(10px))) {
@@ -570,18 +565,13 @@
         </div>
     </nav>
     <main class="relative pt-40 pb-32 overflow-hidden hero-bg" id="main-content">
-        <div aria-hidden="true" class="absolute inset-0 z-0 pointer-events-none">
-            <div class="absolute top-0 left-1/3 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px] mix-blend-multiply"
-                style="animation: pulse 8s ease-in-out infinite; contain: strict;"></div>
-            <div class="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-purple-100/40 rounded-full blur-[100px] mix-blend-multiply"
-                style="animation: pulse 10s ease-in-out infinite; contain: strict;"></div>
-            <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/60 rounded-full blur-[80px] transform-gpu">
-            </div>
+        <div aria-hidden="true" class="absolute inset-0 z-0 pointer-events-none" style="contain:strict;">
+            <div class="absolute top-0 left-1/3 w-[600px] h-[600px] bg-blue-100/30 rounded-full opacity-60"></div>
+            <div class="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-purple-100/30 rounded-full opacity-50"></div>
         </div>
         <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
             <div
-                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.03)] mb-10 animate-divine-bloom bioluminescent-border backdrop-blur-md cursor-default hover:border-google-blue/30 transition-all hover:-translate-y-0.5 will-change-transform">
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.03)] mb-10 animate-divine-bloom bioluminescent-border cursor-default hover:border-google-blue/30 transition-all">
                 <span aria-hidden="true" class="relative flex h-2 w-2">
                     <span
                         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-google-blue opacity-75"></span>
@@ -590,27 +580,21 @@
                 </span>
                 <span class="text-[12px] font-bold tracking-widest uppercase text-google-subtext">Forensic Audit · Only 5 Slots Available This Week</span>
             </div>
-            <h1 class="text-6xl md:text-7xl lg:text-[5.5rem] font-medium tracking-tight text-gray-900 mb-8 leading-[1.05] animate-divine-bloom delay-100"
-                style="will-change: transform, opacity, filter;">
+            <h1 class="text-6xl md:text-7xl lg:text-[5.5rem] font-medium tracking-tight text-gray-900 mb-8 leading-[1.05] animate-divine-bloom delay-100">
                 Turn missed opportunities <br />
                 <span class="relative inline-block">
                     <span
-                        class="bg-clip-text text-transparent bg-gradient-to-r from-google-blue via-blue-700 to-purple-700 animate-gradient-x pb-2"
-                        style="will-change: background-position;">into revenue</span>
-                    <span
-                        class="absolute -inset-1 bg-gradient-to-r from-google-blue/10 to-purple-500/10 blur-xl opacity-50 -z-10"></span>
+                        class="bg-clip-text text-transparent bg-gradient-to-r from-google-blue via-blue-700 to-purple-700 pb-2">into revenue</span>
                     <svg aria-hidden="true" class="absolute w-full h-3 -bottom-1 left-0 text-google-blue/20"
                         preserveAspectRatio="none" viewBox="0 0 100 10">
                         <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="2"></path>
                     </svg>
                 </span>
             </h1>
-            <p class="text-xl md:text-2xl text-google-subtext max-w-2xl mx-auto mb-12 leading-relaxed font-inter font-normal animate-divine-bloom delay-200"
-                style="will-change: transform, opacity, filter;">
+            <p class="text-xl md:text-2xl text-google-subtext max-w-2xl mx-auto mb-12 leading-relaxed font-inter font-normal animate-divine-bloom delay-200">
                 The average business loses tens of thousands a year to stale leads and missed reviews — silently, invisibly. Our Forensic AI Audit shows you the exact number. Zero commitment, zero cost, zero guesswork.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full mb-6 animate-divine-bloom delay-300"
-                style="will-change: transform, opacity, filter;">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full mb-6 animate-divine-bloom delay-300">
                 <button
                     class="cta-pulse relative group bg-[#1a73e8] hover:bg-[#1557b0] text-white text-lg font-bold px-8 py-4 rounded-xl shadow-[0_10px_30px_-10px_rgba(26,115,232,0.5)] hover:shadow-[0_20px_40px_-15px_rgba(26,115,232,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-google-blue/50 transform-gpu will-change-transform"
                     onclick="window.location.href='../../Onboarding/onboarding.html?type=audit'">
@@ -622,27 +606,24 @@
                         class="material-symbols-outlined text-xl relative z-10 group-hover:translate-x-1 transition-transform will-change-transform">search</span>
                 </button>
                 <button
-                    class="group bg-white hover:bg-gray-50 text-gray-800 border border-gray-300 hover:border-gray-400 text-lg font-bold px-8 py-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-3 backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-gray-300 transform-gpu will-change-transform"
+                    class="group bg-white hover:bg-gray-50 text-gray-800 border border-gray-300 hover:border-gray-400 text-lg font-bold px-8 py-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-3 focus:outline-none focus:ring-4 focus:ring-gray-300"
                     onclick="window.location.href='../../Onboarding/onboarding.html?type=lead'">
                     <span aria-hidden="true"
-                        class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform will-change-transform">recall</span>
+                        class="material-symbols-outlined text-lg">recall</span>
                     Reactivate Dead Leads
                 </button>
                 <button
-                    class="group bg-white hover:bg-gray-50 text-gray-800 border border-gray-300 hover:border-gray-400 text-lg font-bold px-8 py-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-3 backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-gray-300 transform-gpu will-change-transform"
+                    class="group bg-white hover:bg-gray-50 text-gray-800 border border-gray-300 hover:border-gray-400 text-lg font-bold px-8 py-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-3 focus:outline-none focus:ring-4 focus:ring-gray-300"
                     onclick="document.getElementById('demo-modal').classList.remove('hidden'); document.getElementById('demo-modal').style.display='flex';">
                     <span aria-hidden="true"
                         class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform will-change-transform">sms</span>
                     Try Review Agent Demo
                 </button>
             </div>
-            <p class="text-xs text-gray-400 font-inter mb-20 animate-divine-bloom delay-300" style="will-change: transform, opacity, filter;">No setup. No contracts. Performance-only billing — you pay nothing until we deliver.</p>
-            <div class="relative w-full max-w-7xl mx-auto animate-divine-bloom delay-400 perspective-1000 group/dashboard"
-                style="will-change: transform, opacity, filter;">
+            <p class="text-xs text-gray-400 font-inter mb-20 animate-divine-bloom delay-300">No setup. No contracts. Performance-only billing — you pay nothing until we deliver.</p>
+            <div class="relative w-full max-w-7xl mx-auto animate-divine-bloom delay-400">
                 <!-- Atmospheric Glow Behind Dashboard -->
-                <div
-                    class="absolute -inset-10 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 blur-3xl opacity-50 rounded-[3rem] animate-pulse-slow">
-                </div>
+                <div class="absolute -inset-10 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10 opacity-40 rounded-[3rem]"></div>
 
                 <!-- Main Dashboard Image Container -->
                 <div
