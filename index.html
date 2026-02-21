@@ -1651,35 +1651,22 @@
             messages.scrollTop = messages.scrollHeight;
 
             try {
-                // Use OpenRouter directly - user needs to provide their own API key
-                // Get key from n8n or use environment variable
-                const OPENROUTER_KEY = 'OPENROUTER_API_KEY'; // Replace with your key or set N8N_OPENROUTER_KEY
-                
-                // Try to get from window or use default fallback
-                const apiKey = window.OPENROUTER_KEY || 'sk-or-v1-INSERT_YOUR_OPENROUTER_KEY_HERE';
-                
-                const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                // Call n8n proxy which adds OpenRouter key securely
+                const response = await fetch('https://n8n.srv1334356.hstgr.cloud/webhook/ai-chat', {
                     method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${OPENROUTER_KEY}`,
-                        'Content-Type': 'application/json',
-                        'HTTP-Referer': 'https://rekindlepro.com',
-                        'X-Title': 'Rekindle Pro'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        model: 'meta-llama/llama-3.3-70b-instruct',
                         messages: [
                             { role: 'system', content: 'You are Nathan from Rekindle Pro. Be helpful and concise. Services: Ghost Lead Recovery (10% of recovered revenue), Review Agent (£2.50/review), Free Forensic Audit. Keep responses under 2 sentences.' },
                             { role: 'user', content: text }
-                        ],
-                        max_tokens: 150
+                        ]
                     })
                 });
                 
                 const data = await response.json();
-                console.log('OpenRouter response:', data);
+                console.log('AI response:', data);
                 
-                let reply = data.choices?.[0]?.message?.content || '';
+                let reply = data.text || data.reply || data.output || '';
                 
                 if (!reply) {
                     reply = "I didn't catch that. Want a free revenue audit? Call +44 7476 965093";
