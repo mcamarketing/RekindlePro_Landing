@@ -1571,32 +1571,15 @@
             document.getElementById('call-status').style.display = 'none';
         }
 
-        async function toggleVoiceCall() {
-            if (!telnyxClient) {
-                initTelnyx();
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-
-            const callBtn = document.getElementById('call-btn');
-            const callIcon = document.getElementById('call-icon');
-
-            if (window.isCallActive && currentCall) {
-                // Hang up
-                currentCall.hangup();
-                currentCall = null;
-                window.isCallActive = false;
-                callBtn.style.background = '#10b981';
-                callIcon.textContent = 'call';
-                hideCallStatus();
-            } else {
-                // Start call
-                try {
-                    updateCallStatus('Connecting to Nathan...', 'info');
-
-                    // Make call to Nathan's SIP address (you'll need to configure this in Telnyx)
-                    currentCall = telnyxClient.newCall({
-                        destinationNumber: 'nathan-support',
-                        callerNumber: 'web-caller',
+        function toggleVoiceCall() {
+            // For now, show phone number - voice integration coming soon
+            const messages = document.getElementById('support-messages');
+            const phoneBubble = document.createElement('div');
+            phoneBubble.style.cssText = 'display:flex;gap:8px;align-items:flex-start;margin-top:8px;';
+            phoneBubble.innerHTML = `<div style="width:24px;height:24px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><span class="material-symbols-outlined" style="font-size:12px;color:#6b7280;">call</span></div><div style="background:#f3f4f6;border-radius:16px;border-top-left-radius:4px;padding:10px 12px;font-size:13px;color:#1f2937;max-width:230px;"><a href="tel:+447700900000" style="color:#1a73e8;font-weight:600;text-decoration:none;">+44 7700 900000</a><br><span style="color:#6b7280;font-size:11px;">Click to call Riccardo directly</span></div>`;
+            messages.appendChild(phoneBubble);
+            messages.scrollTop = messages.scrollHeight;
+        }
                         audio: true,
                         video: false
                     });
