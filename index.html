@@ -1576,7 +1576,7 @@
             const messages = document.getElementById('support-messages');
             const phoneBubble = document.createElement('div');
             phoneBubble.style.cssText = 'display:flex;gap:8px;align-items:flex-start;margin-top:8px;';
-            phoneBubble.innerHTML = `<div style="width:24px;height:24px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><span class="material-symbols-outlined" style="font-size:12px;color:#6b7280;">call</span></div><div style="background:#f3f4f6;border-radius:16px;border-top-left-radius:4px;padding:10px 12px;font-size:13px;color:#1f2937;max-width:230px;"><a href="tel:+447700900000" style="color:#1a73e8;font-weight:600;text-decoration:none;">+44 7700 900000</a><br><span style="color:#6b7280;font-size:11px;">Click to call Riccardo directly</span></div>`;
+            phoneBubble.innerHTML = `<div style="width:24px;height:24px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><span class="material-symbols-outlined" style="font-size:12px;color:#6b7280;">call</span></div><div style="background:#f3f4f6;border-radius:16px;border-top-left-radius:4px;padding:10px 12px;font-size:13px;color:#1f2937;max-width:230px;"><a href="tel:+447476965093" style="color:#1a73e8;font-weight:600;text-decoration:none;">+44 7476 965093</a><br><span style="color:#6b7280;font-size:11px;">Click to call Riccardo directly</span></div>`;
             messages.appendChild(phoneBubble);
             messages.scrollTop = messages.scrollHeight;
         }
@@ -1646,7 +1646,18 @@
                 });
                 
                 const data = await response.json();
-                const reply = data.output || data.reply || "I didn't get that. Try again or call us directly.";
+                console.log('Agent response:', data);
+                
+                // Try multiple possible response fields
+                let reply = data.output || data.reply || data.text || data.message || data.response;
+                
+                if (!reply || (typeof reply === 'object' && !reply.text)) {
+                    // Fallback if agent fails
+                    reply = "I'm connecting you with our team. In the meantime, would you like a free revenue audit?";
+                }
+                if (typeof reply === 'object' && reply.text) {
+                    reply = reply.text;
+                }
 
                 typing.remove();
                 const botBubble = document.createElement('div');
