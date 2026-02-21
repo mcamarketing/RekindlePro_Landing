@@ -1164,19 +1164,53 @@
                 <p class="text-xl text-google-subtext font-inter font-normal">No retainers. No setup fees. No contracts. You pay nothing until we deliver recovered revenue. If we don't find your money, you owe nothing.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start value-stack-container">
-                <!-- Review Agent -->
+                <!-- Ghost Lead Recovery (MAIN TIER) -->
+                <div
+                    class="bg-white rounded-3xl p-8 border-2 border-[#C4622D] shadow-[0_20px_40px_-15px_rgba(196,98,45,0.3)] relative z-10 transform md:-translate-y-4 kinetic-card value-step transform-gpu will-change-transform">
+                    <div class="absolute top-0 right-0 left-0 bg-[#C4622D] text-white text-[11px] font-bold py-2 rounded-t-[22px] uppercase tracking-widest text-center shadow-md">
+                        Highest ROI · Most Popular</div>
+                    <div class="w-12 h-12 rounded-xl bg-[#C4622D]/10 flex items-center justify-center mb-4 mt-6">
+                        <span class="material-symbols-outlined text-2xl text-[#C4622D]">recall</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Ghost Lead Recovery</h3>
+                    <div class="flex items-baseline gap-1 mb-2">
+                        <span class="text-4xl font-bold text-gray-900 tracking-tight">10%</span>
+                        <span class="text-lg text-gray-500">of recovered</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-2">+ £0.08 per lead analyzed</p>
+                    <p class="text-sm text-google-subtext mb-4">You pay nothing until we recover your money.</p>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-3 mb-6 text-sm text-green-800">
+                        <strong>3x ROI Guarantee:</strong> If we don't recover 3x our fee within 90 days, refund the analysis cost.
+                    </div>
+                    <button
+                        class="w-full py-3 rounded-xl bg-[#C4622D] text-white font-bold hover:bg-[#a85425] shadow-lg shadow-[#C4622D]/30 transition-all mb-6 hover:shadow-[#C4622D]/50 focus:outline-none focus:ring-4 focus:ring-[#C4622D]/50"
+                        onclick="openGhostLeadModal()">Run Your Ghost Lead Forensic — Free</button>
+                    <div class="text-xs text-gray-500 mb-4">
+                        <strong>Volume discounts:</strong><br>
+                        0-500 leads: £0.10/lead<br>
+                        501-2,000: £0.08/lead<br>
+                        2,001+: £0.05/lead
+                    </div>
+                    <ul class="space-y-3 text-[14px] text-gray-900 font-inter font-medium">
+                        <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-[#C4622D] text-lg">check_circle</span>Forensic scan surfaces leads with active buying signals</li>
+                        <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-[#C4622D] text-lg">check_circle</span>Hyper-personalised re-engagement, not mass blasts</li>
+                        <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-[#C4622D] text-lg">check_circle</span>Zero cost until a lead converts</li>
+                    </ul>
+                </div>
+                <!-- Review Agent (PROOF TIER) -->
                 <div
                     class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-google-blue/20 hover:shadow-xl transition-all duration-300 kinetic-card value-step transform-gpu">
-                    <div class="w-12 h-12 rounded-xl bg-google-blue/10 flex items-center justify-center mb-4">
-                        <span class="material-symbols-outlined text-2xl text-google-blue">star</span>
+                    <div class="w-12 h-12 rounded-xl bg-gray-200 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-2xl text-gray-600">star</span>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Review Agent</h3>
                     <div class="flex items-baseline gap-1 mb-2">
                         <span class="text-4xl font-bold text-gray-900 tracking-tight">£2.50</span>
                     </div>
-                    <p class="text-sm text-google-subtext mb-8">per verified review captured</p>
+                    <p class="text-sm text-google-subtext mb-4">per verified review captured</p>
+                    <p class="text-sm text-gray-500 mb-6">Start here to test our automation — then upgrade to unlock £10K-£50K in dormant leads.</p>
                     <button
-                        class="w-full py-3 rounded-xl bg-google-blue text-white font-bold hover:bg-google-blueHover transition-colors mb-8 focus:outline-none focus:ring-4 focus:ring-google-blue/30"
+                        class="w-full py-3 rounded-xl bg-gray-600 text-white font-bold hover:bg-gray-700 transition-colors mb-6 focus:outline-none focus:ring-4 focus:ring-gray-400/30"
                         onclick="document.getElementById('demo-modal').classList.remove('hidden'); document.getElementById('demo-modal').style.display='flex';">Try Live Demo</button>
                     <ul class="space-y-3 text-[14px] text-google-subtext font-inter">
                         <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-green-600 text-lg">check</span>Automated SMS at exactly the right moment</li>
@@ -1184,31 +1218,9 @@
                         <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-green-600 text-lg">check</span>Negative feedback intercepted before it posts</li>
                     </ul>
                 </div>
-                <!-- Lead Reactivation -->
+                <!-- Forensic Revenue Audit (FREE) -->
                 <div
-                    class="bg-white rounded-3xl p-8 border-2 border-google-blue shadow-glow-lg relative z-10 transform md:-translate-y-4 bioluminescent-border kinetic-card value-step transform-gpu will-change-transform">
-                    <div class="absolute top-0 right-0 left-0 bg-google-blue text-white text-[11px] font-bold py-2 rounded-t-[22px] uppercase tracking-widest text-center shadow-md">
-                        Most Popular</div>
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4 mt-6">
-                        <span class="material-symbols-outlined text-2xl text-purple-600">recall</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Ghost Lead Recovery</h3>
-                    <div class="flex items-baseline gap-1 mb-2">
-                        <span class="text-4xl font-bold text-gray-900 tracking-tight">Performance</span>
-                    </div>
-                    <p class="text-sm text-google-subtext mb-8">you pay only when a lead books or converts</p>
-                    <button
-                        class="w-full py-3 rounded-xl bg-google-blue text-white font-bold hover:bg-google-blueHover shadow-lg shadow-google-blue/30 transition-all mb-8 hover:shadow-google-blue/50 focus:outline-none focus:ring-4 focus:ring-google-blue/50"
-                        onclick="openGhostLeadModal()">Run Your Ghost Lead Forensic — Free</button>
-                    <ul class="space-y-3 text-[14px] text-gray-900 font-inter font-medium">
-                        <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-google-blue text-lg">check_circle</span>Forensic scan surfaces leads with active buying signals</li>
-                        <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-google-blue text-lg">check_circle</span>Hyper-personalised re-engagement, not mass blasts</li>
-                        <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-google-blue text-lg">check_circle</span>Zero cost until a lead converts</li>
-                    </ul>
-                </div>
-                <!-- AI Audit -->
-                <div
-                    class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-google-blue/20 hover:shadow-xl transition-all duration-300 kinetic-card value-step transform-gpu">
+                    class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-green-500/20 hover:shadow-xl transition-all duration-300 kinetic-card value-step transform-gpu">
                     <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-2xl text-green-600">psychology</span>
                     </div>
@@ -1216,9 +1228,10 @@
                     <div class="flex items-baseline gap-1 mb-2">
                         <span class="text-4xl font-bold text-gray-900 tracking-tight">Free</span>
                     </div>
-                    <p class="text-sm text-google-subtext mb-8">system agnostic · no obligation · only 5 slots/week</p>
+                    <p class="text-sm text-google-subtext mb-4">system agnostic · no obligation · only 5 slots/week</p>
+                    <p class="text-sm text-gray-500 mb-6">Start here to prove our automation works — then unlock the £10K-£50K in your CRM.</p>
                     <button
-                        class="w-full py-3 rounded-xl border-2 border-green-600 text-green-600 font-bold hover:bg-green-50 transition-colors mb-8 focus:outline-none focus:ring-4 focus:ring-green-600/30"
+                        class="w-full py-3 rounded-xl border-2 border-green-600 text-green-600 font-bold hover:bg-green-50 transition-colors mb-6 focus:outline-none focus:ring-4 focus:ring-green-600/30"
                         onclick="window.location.href='../../Onboarding/onboarding.html?type=audit'">Claim Your Forensic Audit</button>
                     <ul class="space-y-3 text-[14px] text-google-subtext font-inter">
                         <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-green-600 text-lg">check</span>Cross-system revenue leak scan</li>
@@ -1226,6 +1239,10 @@
                         <li class="flex gap-3 items-center"><span aria-hidden="true" class="material-symbols-outlined text-green-600 text-lg">check</span>Prioritised action plan — no obligation to buy</li>
                     </ul>
                 </div>
+            </div>
+            <!-- Enterprise Tier -->
+            <div class="mt-12 text-center">
+                <p class="text-gray-500 mb-4">For enterprise (5,000+ leads, 6-month commitment): <strong>15% of recovered revenue</strong>. <a href="#" class="text-[#C4622D] underline hover:no-underline">Contact for custom terms</a></p>
             </div>
         </div>
     </section>
@@ -1616,7 +1633,7 @@
                 // Temporary static response while backend is being fixed
                 await new Promise(resolve => setTimeout(resolve, 800));
 
-                const reply = "Hi! I'm Nathan from Rekindle Pro. I help businesses with:\n\n• SMS review automation (£2.50/review)\n• Lead reactivation\n• Free AI audits\n\nWhat would you like to know?";
+                const reply = "Hi! I'm Nathan from Rekindle Pro. I help businesses recover lost revenue:\n\n• Ghost Lead Recovery: 10% of recovered £ (no upfront cost)\n• Review Automation: £2.50/review\n• Free Revenue Audit (5 slots/week)\n\nWhat would you like to know?";
 
                 typing.remove();
                 const botBubble = document.createElement('div');
