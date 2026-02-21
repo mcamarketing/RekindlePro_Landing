@@ -1665,12 +1665,6 @@
                 } else {
                     throw new Error('Invalid response');
                 }
-
-                typing.remove();
-                const botBubble = document.createElement('div');
-                botBubble.style.cssText = 'display:flex;gap:8px;align-items:flex-start;';
-                botBubble.innerHTML = `<div style="width:24px;height:24px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><span class="material-symbols-outlined" style="font-size:12px;color:#6b7280;">smart_toy</span></div><div style="background:#f3f4f6;border-radius:16px;border-top-left-radius:4px;padding:10px 12px;font-size:13px;color:#1f2937;max-width:230px;line-height:1.4;">${reply.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>`;
-                messages.appendChild(botBubble);
             } catch (e) {
                 console.error('Nathan error:', e);
                 // Fallback response
