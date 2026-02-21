@@ -1424,75 +1424,107 @@
         </div>
     </div>
 
-    <!-- ===================== SUPPORT CHAT WIDGET ===================== -->
-    <div id="support-widget" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
+    <!-- ===================== NATHAN AI INTERFACE ===================== -->
+    <!-- Nathan Chat Toggle - Replaces old widget -->
+    <button id="nathan-toggle" onclick="openNathanChat()"
+        style="position:fixed;bottom:24px;right:24px;z-index:9999;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#1a3379,#0f172a);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(26,115,232,0.4);transition:transform .2s,box-shadow .2s;"
+        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <span class="material-symbols-outlined" style="font-size:26px;">smart_toy</span>
+    </button>
 
-        <!-- Toggle button -->
-        <button id="support-toggle"
-            onclick="toggleSupportChat()"
-            style="width:56px;height:56px;border-radius:50%;background:#1a73e8;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(26,115,232,0.4);transition:transform .2s,box-shadow .2s;"
-            onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
-            aria-label="Open support chat">
-            <span id="support-icon" class="material-symbols-outlined" style="font-size:26px;">chat</span>
-        </button>
-
-        <!-- Chat panel -->
-        <div id="support-panel"
-            style="display:none;flex-direction:column;position:absolute;bottom:68px;right:0;width:320px;height:440px;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.15);border:1px solid #e5e7eb;overflow:hidden;">
-
-            <!-- Header -->
-            <div style="background:#111827;padding:12px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
-                <div style="width:32px;height:32px;border-radius:50%;background:#1a73e8;display:flex;align-items:center;justify-content:center;">
-                    <span class="material-symbols-outlined" style="color:#fff;font-size:16px;">smart_toy</span>
+    <!-- Nathan Chat Modal -->
+    <div id="nathan-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.95);align-items:center;justify-content:center;font-family:'Manrope',sans-serif;">
+        <div style="width:90%;max-width:420px;background:linear-gradient(180deg,#0a0a0a,#000);border-radius:24px;padding:32px;position:relative;border:1px solid rgba(56,189,248,0.2);">
+            <button onclick="closeNathanChat()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:#666;font-size:24px;cursor:pointer;">&times;</button>
+            
+            <!-- Nathan Avatar Circle -->
+            <div style="width:120px;height:120px;margin:0 auto 24px;position:relative;">
+                <div style="width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#1e40af);position:relative;overflow:hidden;">
+                    <span class="material-symbols-outlined" style="font-size:60px;color:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">smart_toy</span>
                 </div>
-                <div style="flex:1;">
-                    <div style="color:#fff;font-weight:700;font-size:14px;">Nathan</div>
-                    <div style="color:#9ca3af;font-size:11px;">Rekindle Pro Support</div>
-                </div>
-                <button onclick="toggleSupportChat()" style="background:none;border:none;cursor:pointer;color:#9ca3af;display:flex;align-items:center;" aria-label="Close chat">
-                    <span class="material-symbols-outlined" style="font-size:20px;">close</span>
-                </button>
+                <!-- Animated ring -->
+                <div id="nathan-ring" style="position:absolute;inset:-8px;border-radius:50%;border:2px solid transparent;border-top-color:#38bdf8;animation:spin 2s linear infinite;display:none;"></div>
             </div>
-
-            <!-- Messages -->
-            <div id="support-messages"
-                style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;">
-                <div style="display:flex;gap:8px;align-items:flex-start;">
-                    <div style="width:24px;height:24px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
-                        <span class="material-symbols-outlined" style="font-size:12px;color:#6b7280;">smart_toy</span>
-                    </div>
-                    <div style="background:#f3f4f6;border-radius:16px;border-top-left-radius:4px;padding:10px 12px;font-size:13px;color:#1f2937;max-width:230px;line-height:1.4;">
-                        Hi! I'm Nathan, Rekindle Pro's assistant. Ask me anything about our services.
-                    </div>
+            
+            <h2 style="color:#fff;text-align:center;font-size:24px;margin-bottom:8px;font-weight:700;">Nathan</h2>
+            <p id="nathan-status" style="color:#38bdf8;text-align:center;font-size:14px;margin-bottom:24px;">AI Assistant</p>
+            
+            <!-- Chat Messages -->
+            <div id="nathan-messages" style="height:200px;overflow-y:auto;margin-bottom:16px;padding:12px;background:rgba(255,255,255,0.03);border-radius:12px;">
+                <div style="color:#ccc;font-size:14px;line-height:1.6;">
+                    Hi! I'm Nathan. I help businesses recover lost revenue from ghost leads and stale pipelines. What would you like to know?
                 </div>
             </div>
-
+            
             <!-- Input -->
-            <div style="border-top:1px solid #e5e7eb;padding:10px 12px;display:flex;gap:8px;flex-shrink:0;background:#fff;">
-                <input id="support-input" type="text" placeholder="Ask me anything..."
-                    style="flex:1;font-size:13px;border:1px solid #d1d5db;border-radius:10px;padding:8px 12px;outline:none;font-family:inherit;"
-                    onfocus="this.style.borderColor='#1a73e8'" onblur="this.style.borderColor='#d1d5db'"
-                    onkeydown="if(event.key==='Enter')sendSupportMessage()" />
-                <button id="call-btn" onclick="toggleVoiceCall()"
-                    style="width:36px;height:36px;border-radius:10px;background:#10b981;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;"
-                    onmouseover="this.style.background='#059669'" onmouseout="if(!window.isCallActive)this.style.background='#10b981'"
-                    aria-label="Voice call">
-                    <span id="call-icon" class="material-symbols-outlined" style="color:#fff;font-size:18px;">call</span>
-                </button>
-                <button onclick="sendSupportMessage()"
-                    style="width:36px;height:36px;border-radius:10px;background:#1a73e8;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;"
-                    onmouseover="this.style.background='#1557b0'" onmouseout="this.style.background='#1a73e8'"
-                    aria-label="Send message">
-                    <span class="material-symbols-outlined" style="color:#fff;font-size:18px;">send</span>
+            <div style="display:flex;gap:8px;">
+                <input id="nathan-input" type="text" placeholder="Ask Nathan..." 
+                    style="flex:1;padding:14px 18px;background:rgba(255,255,255,0.05);border:1px solid rgba(56,189,248,0.3);border-radius:12px;color:#fff;font-size:14px;outline:none;"
+                    onkeydown="if(event.key==='Enter')sendToNathan()">
+                <button onclick="sendToNathan()" style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#1e3a8a,#2563eb);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+                    <span class="material-symbols-outlined" style="color:#fff;">send</span>
                 </button>
             </div>
-
-            <!-- Call status indicator -->
-            <div id="call-status" style="display:none;padding:8px 12px;background:#f0fdf4;border-top:1px solid #bbf7d0;font-size:12px;color:#166534;text-align:center;">
-                <span id="call-status-text">Connecting...</span>
-            </div>
+            
+            <!-- Voice Call Button -->
+            <button onclick="callNathan()" style="width:100%;margin-top:12px;padding:12px;border-radius:12px;background:transparent;border:1px solid rgba(56,189,248,0.3);color:#38bdf8;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+                <span class="material-symbols-outlined">call</span>
+                <span>Call Nathan</span>
+            </button>
         </div>
+        
+        <style>
+            @keyframes spin { to { transform: rotate(360deg); } }
+        </style>
     </div>
+
+    <script>
+        function openNathanChat() {
+            document.getElementById('nathan-modal').style.display = 'flex';
+            document.getElementById('nathan-input').focus();
+        }
+        function closeNathanChat() {
+            document.getElementById('nathan-modal').style.display = 'none';
+        }
+        
+        async function sendToNathan() {
+            const input = document.getElementById('nathan-input');
+            const messages = document.getElementById('nathan-messages');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            // Add user message
+            messages.innerHTML += '<div style="color:#fff;margin-bottom:12px;text-align:right;"><span style="background:linear-gradient(135deg,#1e3a8a,#2563eb);padding:10px 14px;border-radius:12px;display:inline-block;">' + text + '</span></div>';
+            input.value = '';
+            
+            // Show loading
+            document.getElementById('nathan-ring').style.display = 'block';
+            document.getElementById('nathan-status').textContent = 'Thinking...';
+            
+            try {
+                const response = await fetch('https://n8n.srv1334356.hstgr.cloud/webhook/chat-api', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: [{ role: 'user', content: text }] })
+                });
+                
+                const data = await response.json();
+                const reply = data.text || data.message || "Let me connect you with our team.";
+                
+                messages.innerHTML += '<div style="color:#ccc;margin-bottom:12px;"><span style="background:rgba(255,255,255,0.05);padding:10px 14px;border-radius:12px;display:inline-block;">' + reply + '</span></div>';
+            } catch (e) {
+                messages.innerHTML += '<div style="color:#ef4444;margin-bottom:12px;">Connection error. Call +44 7476 965093</div>';
+            }
+            
+            document.getElementById('nathan-ring').style.display = 'none';
+            document.getElementById('nathan-status').textContent = 'AI Assistant';
+            messages.scrollTop = messages.scrollHeight;
+        }
+        
+        function callNathan() {
+            window.location.href = 'tel:+447476965093';
+        }
+    </script>
 
     <!-- Telnyx WebRTC SDK -->
     <script src="https://cdn.telnyx.com/webrtc/latest/telnyx-rtc.js"></script>
